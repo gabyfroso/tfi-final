@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <windows.h>
 #include "utils/methods.h"
 #include "utils/methods.c"
 
@@ -26,11 +27,11 @@ void invertir_arreglo(int arr[], int n)
 
 int main()
 {
+    index:
     int N_Cantidad;
     printf("Ingrese la cantidad de elementos del arreglo: ");
     scanf("%d", &N_Cantidad);
     int arr[N_Cantidad];
-
 
     printf("Ingrese los elementos del arreglo uno en uno:\n");
     for (int i = 0; i < N_Cantidad; i++)
@@ -73,10 +74,10 @@ indexreturn:
         intercion(arr, N_Cantidad);
         break;
     case 3:
-        MergueSort(arr, 0, N_Cantidad-1);
+        MergueSort(arr, 0, N_Cantidad - 1);
         break;
     case 4:
-        Quicksort(arr, 0, N_Cantidad-1);
+        Quicksort(arr, 0, N_Cantidad - 1);
         break;
     case 5:
         Seleccion(arr, N_Cantidad);
@@ -86,6 +87,7 @@ indexreturn:
         goto indexreturn;
     }
 
+    // todos estan ascendiente, solo lo invierto en una función si me lo pide el usuario para no repetir codigo
     if (invert == 1)
         invertir_arreglo(arr, N_Cantidad);
 
@@ -94,7 +96,14 @@ indexreturn:
     {
         printf("%d ", arr[i]);
     }
-    printf("\n");
+    printf("\n salir? Y(yes) N(no)\n>");
+    char tmpchar;
+    scanf(" %c", &tmpchar);
+
+    if(tmpchar == 'n' || tmpchar == 'N')
+        goto index;
+
+    system("PAUSE");
 
     return 0;
 }

@@ -41,6 +41,7 @@ void bubbleSort(int arr[], int n)
             if (arr[j] > arr[j + 1])
             {
                 intercambio(&arr[j], &arr[j + 1]);
+                indexcmd(arr, n);//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                 swapped = 1;
             }
         }
@@ -59,11 +60,13 @@ void intercion(int arr[], int n)
     {
         key = arr[i];
         j = i - 1;
+        indexcmd(arr, n);//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         while (j >= 0 && arr[j] > key)
         {
-            indexcmd(arr, n);//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            printf("\n %d[%d] > %d ", arr[j], j, key);
             arr[j + 1] = arr[j];
-            j = j - 1;
+            j -= 1;
+            indexcmd(arr, n);//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         }
         arr[j + 1] = key;
     }
@@ -86,8 +89,11 @@ void merge(int arr[], int l, int m, int r)
     i = 0;
     j = 0;
     k = l;
+
+    indexcmd(arr, r+1);//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     while (i < n1 && j < n2)
     {
+        printf("\n %d[i] < %d[n1] && %d[j] < %d[n2]", i, n1, j, n2);
         if (L[i] <= R[j])
         {
             arr[k] = L[i];
@@ -98,22 +104,30 @@ void merge(int arr[], int l, int m, int r)
             arr[k] = R[j];
             j++;
         }
+        indexcmd(arr, r+1);//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         k++;
     }
 
+    indexcmd(arr, r+1);//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     while (i < n1)
     {
+        printf("\n i < %d[n1]", n1);
         arr[k] = L[i];
         i++;
         k++;
+        indexcmd(arr, r+1);//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     }
 
     while (j < n2)
     {
+        printf("j < %d[n2]", n2);
         arr[k] = R[j];
         j++;
         k++;
+        indexcmd(arr, r+1);//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     }
+
+    indexcmd(arr, r+1);//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 }
 void MergueSort(int arr[], int l, int r)
 {
@@ -135,10 +149,13 @@ int partition(int arr[], int low, int high)
 
     for (int j = low; j <= high - 1; j++)
     {
+        indexcmd(arr, high+1); //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         if (arr[j] < pivot)
         {
+            printf(" \n %d[arr[%d]] < %d[pivot]", arr[j], j, pivot);
             i++;
             intercambio(&arr[i], &arr[j]);
+            indexcmd(arr, high+1); //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         }
     }
     intercambio(&arr[i + 1], &arr[high]);
@@ -152,6 +169,8 @@ void Quicksort(int arr[], int low, int high)
         int pi = partition(arr, low, high);
         Quicksort(arr, low, pi - 1);
         Quicksort(arr, pi + 1, high);
+
+        indexcmd(arr, high+1); //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     }
 }
 
